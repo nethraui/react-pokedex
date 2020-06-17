@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom';
+import NavBar from './components/layouts/NavBar';
+import NextPrev from './components/layouts/NextPrev';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import PokeDashboard from './components/layouts/PokeDashboard';
+import PokeInfo from './components/pokemon/PokeInfo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar/>
+        <NextPrev/>
+        <div className="container">
+          <Switch>
+              <Route exact path="/" component={PokeDashboard}/>
+              <Route exact path="/pokemon/:pokeNumber" component={PokeInfo}/>
+              <PokeDashboard/>
+          </Switch>
+        </div>
+      </div>
+  </Router>
+    
   );
 }
 
